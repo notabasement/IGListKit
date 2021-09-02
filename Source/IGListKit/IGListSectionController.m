@@ -97,6 +97,18 @@ void IGListSectionControllerPopThread(void) {
 
 - (void)didUnhighlightItemAtIndex:(NSInteger)index {}
 
+- (UIContextMenuConfiguration * _Nullable)contextMenuConfigurationForItemAtIndex:(NSInteger)index point:(CGPoint)point {
+    return nil;
+}
+
+- (UITargetedPreview * _Nullable)previewForHighlightingContextMenuWithConfiguration:(UIContextMenuConfiguration *)configuration {
+    return nil;
+}
+
+- (UITargetedPreview * _Nullable)previewForDismissingContextMenuWithConfiguration:(UIContextMenuConfiguration *)configuration {
+    return nil;
+}
+
 - (BOOL)canMoveItemAtIndex:(NSInteger)index {
     return NO;
 }

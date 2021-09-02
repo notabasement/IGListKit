@@ -61,6 +61,8 @@ The changelog for `IGListKit`. Also see the [releases](https://github.com/instag
 
 ### Enhancements
 
+- Added support for iOS 13 Context Menus with `contextMenuConfigurationForItemAt` method. [Jérôme B.](https://github.com/jjbourdev) [(#1430)](https://github.com/Instagram/IGListKit/pull/1430).
+
 - Added `shouldSelectItemAtIndex:` to `IGListSectionController` . [dirtmelon](https://github.com/dirtmelon)
 
 - Added [Mac Catalyst](https://developer.apple.com/mac-catalyst/) support. [Petro Rovenskyy](https://github.com/3a4oT/) 
