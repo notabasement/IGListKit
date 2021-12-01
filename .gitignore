@@ -55,3 +55,8 @@ vendor
 
 # Jetbrains
 .idea
+
+#Cocoapods
+Examples/Examples-iOS/Pods
+Examples/Examples-macOS/Pods
+Examples/Examples-tvOS/Pods

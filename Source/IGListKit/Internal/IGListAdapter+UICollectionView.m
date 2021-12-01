@@ -17,14 +17,25 @@
 #import "IGListSectionControllerInternal.h"
 
 #import "IGListAdapterInternal.h"
+#import <objc/runtime.h>
+ 
+static void * ConfigurationPropertyKey = &ConfigurationPropertyKey;
 
-@interface IGListAdapter ()
+@interface IGListAdapter (UICollectionView)
 
 @property (nonatomic, strong) NSMapTable *configurationToSectionController;
 
 @end
+ 
+ @implementation IGListAdapter (UICollectionView)
+ 
+- (NSMapTable *)configurationToSectionController {
+    return objc_getAssociatedObject(self, ConfigurationPropertyKey);
+}
 
-@implementation IGListAdapter (UICollectionView)
+- (void)setConfigurationToSectionController:(NSMapTable *)configurationToSectionController {
+    objc_setAssociatedObject(self, ConfigurationPropertyKey, configurationToSectionController, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
 
 #pragma mark - UICollectionViewDataSource
 
@@ -290,9 +301,10 @@
         if (!self.configurationToSectionController) {
             self.configurationToSectionController = [NSMapTable weakToWeakObjectsMapTable];
         }
-        [self.configurationToSectionController setObject:configuration forKey:sectionController];
+        [self.configurationToSectionController removeAllObjects];
+        [self.configurationToSectionController setObject:sectionController forKey:configuration];
     }
-    return nil;
+    return configuration;
 }
 
 - (UITargetedPreview *)collectionView:(UICollectionView *)collectionView previewForHighlightingContextMenuWithConfiguration:(UIContextMenuConfiguration *)configuration  API_AVAILABLE(ios(13.0)){
